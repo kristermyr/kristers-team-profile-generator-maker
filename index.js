@@ -1,5 +1,10 @@
 const inquirer = require("inquirer");
+const Employee = require('./lib/Employee')
+const Manager = require("./lib/Manager")
+const Intern = require("./lib/Intern")
+const generateMarkdown = require("./generateMarkdown")
 const fs = require ('fs');
+const path = require("path");
 
 
 
@@ -39,7 +44,41 @@ const addManager = () => {
     ])
     .then (managerInput => {
         const {name, id, email, officeNumber} = managerInput;
-        const manager = 
-    })
+        const manager = new Manager (name, id, email, officeNumber);
 
-}
+        Team.push(manager);
+    })
+};
+
+    const promtMenu = () => {
+        return inquirer.prompt([
+            {
+                type: "list",
+                message: "Select what you want to do next.",
+                name: "menu",
+                choices: ['add an engineer', 'add an intern', 'complete my team']
+            },
+        ])
+    }
+
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+      if(err) {
+        console.log(err)
+        return;
+      } else {
+        console.log("Success! Your HTML file has been created.")   //message to user when readme file has been created
+      }
+    })
+  }
+  function init() {
+    addManager()
+        .then(Team => {
+            return generateMarkdown(Team);
+        })
+      .then(function(data) {
+        writeFile('Index.HTML', generateMarkdown(data));      //writes content of GeneratemarkDown function to readme
+        console.log("Success! Check your HTML file")
+      })
+  }
+  init();

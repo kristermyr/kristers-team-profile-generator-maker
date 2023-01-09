@@ -1,0 +1,19 @@
+// function to generate markdown for README
+function generateMarkdown(data) {
+  `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>YAY!</title>
+  </head>
+  <body>
+      
+  </body>
+  </html>`
+  
+  }
+  
+  module.exports = generateMarkdown;
+  
