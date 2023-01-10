@@ -46,7 +46,7 @@ const addManager = () => {
         const {name, id, email, officeNumber} = managerInput;
         const manager = new Manager (name, id, email, officeNumber);
 
-        Team.push(manager);
+        Team.push(managerInput);
     })
 };
 
@@ -76,8 +76,8 @@ const writeFile = data => {
         .then(Team => {
             return generateMarkdown(Team);
         })
-      .then(function(data) {
-        writeFile('Index.HTML', generateMarkdown(data));      //writes content of GeneratemarkDown function to readme
+      .then(function(Team) {
+        writeFile('Index.HTML', generateMarkdown(Team));      //writes content of GeneratemarkDown function to readme
         console.log("Success! Check your HTML file")
       })
   }
