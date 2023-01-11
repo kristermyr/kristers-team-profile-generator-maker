@@ -3,7 +3,7 @@ const generateTeam = team => {
 
 const generateManager = manager => {
       return `
-            <div class="card">
+            <div class="card m-5">
             <div class="card-header bg-secondary text-white">
                 <h2 class="card-title">${manager.getName()}</h2>
                 <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
@@ -21,7 +21,7 @@ const generateManager = manager => {
 
   const generateEngineer = engineer => {
       return `
-            <div class="card">
+            <div class="card m-5">
             <div class="card-header bg-secondary text-white">
                 <h2 class="card-title">${engineer.getName()}</h2>
                 <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
@@ -39,7 +39,7 @@ const generateManager = manager => {
 
   const generateIntern = intern => {
       return `
-            <div class="card row">
+            <div class="card row m-5 ">
             <div class="card-header bg-secondary text-white">
                 <h2 class="card-title">${intern.getName()}</h2>
                 <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
@@ -82,6 +82,7 @@ return `<!DOCTYPE html>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>The Team</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous>
+           
         </head>
         <body>
             <div class="container-fluid">
