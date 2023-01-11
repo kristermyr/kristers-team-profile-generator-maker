@@ -28,7 +28,7 @@ const menu = () => {
             if (answer.selectEmployee ==="Engineer"){
                 addEngineer();
             }
-            if (answer.selectEmployee ==="Intern"){
+            if (answer.selectEmployee ==="intern"){
                 addIntern();
             }
             if (answer.selectEmployee ==="Completed"){
@@ -121,22 +121,42 @@ const addEngineer = () => {
     })
 };
 const addIntern = () => {
-    inquirer.prompt([
-      { type: "input", name: "name", message: "Enter engineer name" },
-      { type: "input", name: "id", message: "Enter employee id" },
-      { type: "input", name: "email", message: "Enter employee email" },
-      { type: "input", name: "school", message: "Enter employee school" },
-    ])
-    .then(answers => {
-        const intern = new Intern(
-            answers.name, 
-            answers.id, 
-            answers.email,
-            answers.school)
+    inquirer.prompt ([
+        {
+            type: "input",
+            message:"What is the Intern's name?",
+            name: "name",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+        
+        },
+        {
+            type: "input",
+            message:"Please enter the Intern's ID.",
+            name: "id",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        {
+            type: "input",
+            message:"What is the Intern's e-mail address?",
+            name: "email",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        {
+            type: "input",
+            message:"What is the Intern's School?",
+            name: "school",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        ])
+    .then (answers => {
+        const intern = new Intern (answers.name, answers.id, answers.email, answers.github, answers.officeNumber)
         employees.push(intern)
-        mainMenu()
-      })
-  };
+        menu()
+    })
+};
 
         menu()
 
