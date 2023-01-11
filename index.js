@@ -9,7 +9,7 @@ const path = require("path");
 
 
 
-const Team = [];
+const employees = [];
 
 const menu = () => {
      inquirer.prompt (
@@ -19,7 +19,7 @@ const menu = () => {
             name: "selectEmployee",
             choices: ["Manager","Engineer", "intern","Completed"],
             validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
-        }),
+        })
         .then((answer) => {
             if(answer.selectEmployee ==="Manager"){
                 addManager();
@@ -32,17 +32,17 @@ const menu = () => {
             }
             if (answer.selectEmployee ==="Completed"){
                 console.log(employees)
-                writeFile(generateMarkdown(employees))
+                writeFileSync(generateMarkdown(employees))
             }
         });
-
+    }
 
         const addManager = () => {
             inquirer.prompt ([
          {
             type: "input",
             message:"What is the managers name?",
-            name: "id",
+            name: "name",
             validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
         
         },
@@ -68,44 +68,111 @@ const menu = () => {
 
         },
         ])
-    .then (managerInput => {
-        const {name, id, email, officeNumber} = managerInput;
-        const manager = new Manager (name, id, email, officeNumber);
-
-        Team.push(managerInput);
+    .then (answers => {
+        const manager = new Manager (answers.name, answers.id, answers.email, answers.officeNumber)
+        employees.push(manager)
+        menu()
     })
 };
 
-    const promtMenu = () => {
-        return inquirer.prompt([
-            {
-                type: "list",
-                message: "Select what you want to do next.",
-                name: "menu",
-                choices: ['add an engineer', 'add an intern', 'complete my team']
-            },
-        ])
-    }
+const addEngineer = () => {
+    inquirer.prompt ([
+        {
+            type: "input",
+            message:"What is the Engineer's name?",
+            name: "name",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+        
+        },
+        {
+            type: "input",
+            message:"Please enter the Engineer's ID.",
+            name: "id",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
 
-const writeFile = (data) => {
+        },
+        {
+            type: "input",
+            message:"What is the Engineer's e-mail address?",
+            name: "email",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        {
+            type: "input",
+            message:"What is the Engineer's Office Number?",
+            name: "officeNumber",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        {
+            type: "input",
+            message:"What is the Engineers's github username?",
+            name: "github",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        ])
+    .then (answers => {
+        const engineer = new Engineer (answers.name, answers.id, answers.email, answers.officeNumber)
+        employees.push(engineer)
+        menu()
+    })
+};
+const addIntern = () => {
+    inquirer.prompt ([
+        {
+            type: "input",
+            message:"What is the Intern's name?",
+            name: "name",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+        
+        },
+        {
+            type: "input",
+            message:"Please enter the Intern's ID.",
+            name: "id",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        {
+            type: "input",
+            message:"What is the Intern's e-mail address?",
+            name: "email",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        {
+            type: "input",
+            message:"What is the Intern's School?",
+            name: "school",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+
+        },
+        ])
+    .then (answers => {
+        const intern = new Intern (answers.name, answers.id, answers.email, answers.github, answers.officeNumber)
+        employees.push(engineer)
+        menu()
+    })
+};
+
+        menu()
+
+
+const writeFileSync = (data) => {
+    return new Promise ((resolve, reject) => {
     fs.writeFile('./dist/index.html', data, err => {
       if(err) {
-        console.log(err)
+        reject(err);
         return;
-      } else {
-        console.log("Success! Your HTML file has been created.")   //message to user when readme file has been created
       }
-    })
-  }
- /* function init() {
-    addManager()
-        .then(Team => {
-            return generateMarkdown(Team);
-        })
-      .then(function(Team) {
-        writeFile('Index.HTML', generateMarkdown(Team));      //writes content of GeneratemarkDown function to readme
-        console.log("Success! Check your HTML file")
-      })
-  }
-  init();
-  */
+      resolve({
+        good:true,
+        message:'HTML File Created'
+      });
+      
+      
+    });
+});
+};
