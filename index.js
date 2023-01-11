@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const Employee = require('./lib/Employee')
 const Manager = require("./lib/Manager")
 const Intern = require("./lib/Intern")
-const generateMarkdown = require("./generateMarkdown")
+const generateMarkdown = require("./src/generateMarkdown")
 const fs = require ('fs');
 const path = require("path");
 
@@ -11,14 +11,40 @@ const path = require("path");
 
 const Team = [];
 
-const addManager = () => {
-    return inquirer.prompt ([
+const menu = () => {
+     inquirer.prompt (
         {
-            type: "input",
-            message: "Who is the team Manager?",
-            name: "name",
+            type: "list",
+            message: "Select the Employee you would like to add",
+            name: "selectEmployee",
+            choices: ["Manager","Engineer", "intern","Completed"],
             validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+        }),
+        .then((answer) => {
+            if(answer.selectEmployee ==="Manager"){
+                addManager();
+            }
+            if (answer.selectEmployee ==="Engineer"){
+                addEngineer();
+            }
+            if (answer.selectEmployee ==="Intern"){
+                addIntern();
+            }
+            if (answer.selectEmployee ==="Completed"){
+                console.log(employees)
+                writeFile(generateMarkdown(employees))
+            }
+        });
 
+
+        const addManager = () => {
+            inquirer.prompt ([
+         {
+            type: "input",
+            message:"What is the managers name?",
+            name: "id",
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+        
         },
         {
             type: "input",
@@ -41,7 +67,7 @@ const addManager = () => {
             validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
 
         },
-    ])
+        ])
     .then (managerInput => {
         const {name, id, email, officeNumber} = managerInput;
         const manager = new Manager (name, id, email, officeNumber);
@@ -61,7 +87,7 @@ const addManager = () => {
         ])
     }
 
-const writeFile = data => {
+const writeFile = (data) => {
     fs.writeFile('./dist/index.html', data, err => {
       if(err) {
         console.log(err)
@@ -71,7 +97,7 @@ const writeFile = data => {
       }
     })
   }
-  function init() {
+ /* function init() {
     addManager()
         .then(Team => {
             return generateMarkdown(Team);
@@ -82,3 +108,4 @@ const writeFile = data => {
       })
   }
   init();
+  */
