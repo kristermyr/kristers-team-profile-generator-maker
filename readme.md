@@ -1,5 +1,5 @@
 # Kristers Team Profile Generator Maker
-  ![badge](https://img.shields.io/badge/license-Apache-yellow.svg)    
+  ![badge](https://img.shields.io/badge/license-MIT-green.svg)    
 
   
   ## Description
@@ -10,7 +10,7 @@ The team profile generator shows some of my newly learned skills working with no
   * [Usage](#usage)
   * [Credits](#credits)
   * [License](#license)
-  * [Contributing](#lontributing)
+  * [Contributing](#contributing)
   * [Tests](#tests)
   * [Questions](#questions)
 
