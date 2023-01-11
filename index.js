@@ -153,8 +153,8 @@ const addIntern = () => {
         },
         ])
     .then (answers => {
-        //const Intern = new Intern (answers.name, answers.id, answers.email, answers.github, answers.officeNumber)
-        employees.push(Intern)
+        const intern = new Intern (answers.name, answers.id, answers.email, answers.school)
+        employees.push(intern)
         menu()
     })
 };
