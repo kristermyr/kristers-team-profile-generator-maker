@@ -1,7 +1,7 @@
-const generateTeam = team => {
+const generateTeam = team => {             //writes the information from the array
 
 
-const generateManager = manager => {
+const generateManager = manager => {          //creates the HTMLtemplate for the manager cards, and gets the set manager information
       return `
             <div class="card m-5">
             <div class="card-header bg-secondary text-white">
@@ -19,7 +19,7 @@ const generateManager = manager => {
       `;
   };
 
-  const generateEngineer = engineer => {
+  const generateEngineer = engineer => {   //creates the HTML template for the engineer cards, and gets the set engineer information
       return `
             <div class="card m-5">
             <div class="card-header bg-secondary text-white">
@@ -37,8 +37,8 @@ const generateManager = manager => {
       `;
   };
 
-  const generateIntern = intern => {
-      return `
+  const generateIntern = intern => { //creates the HTML template for the intern cards, and gets the set intern information
+      return `  
             <div class="card row m-5 ">
             <div class="card-header bg-secondary text-white">
                 <h2 class="card-title">${intern.getName()}</h2>
@@ -73,8 +73,8 @@ const generateManager = manager => {
 
 module.exports = team => {
 
-
-return `<!DOCTYPE html>
+    // base template before any information is written to the HTML
+return `<!DOCTYPE html>                                             
         <html lang="en">
         <head>
             <meta charset="UTF-8">

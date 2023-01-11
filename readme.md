@@ -25,6 +25,9 @@ The team profile generator shows some of my newly learned skills working with no
   ## Dependencies
   FS, Inquirer and Jest
   ## Credits
+
+  BCS Learning Assistant 
+
   Youtube:
   * https://www.youtube.com/watch?v=q0_egGq6hzE&t=114s&ab_channel=AustinCuddeback
   * https://www.youtube.com/watch?v=Rnv2ZL6jPqs&t=4s&ab_channel=jhf1203
@@ -33,11 +36,14 @@ The team profile generator shows some of my newly learned skills working with no
   Github:
   * https://github.com/nicolewallace09/team-profile-generator
   * https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator
+  * https://github.com/JamesLJenks/10_OOP-Team-Profile-Generator/blob/master/output/team.html
   * https://github.com/jfisher396/team-profile-generator 
   * https://github.com/nicolewallace09/team-profile-generator/blob/master/index.js
+  * https://github.com/TayHern/Team-Profile/blob/main/lib/Manager.js
 
   Collaborators:
   * Dylan Quaale - https://github.com/dylanquaale/EngineerTeam-Generator
+
 
 
   ## License

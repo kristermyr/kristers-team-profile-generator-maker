@@ -6,14 +6,7 @@ const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern")
 
-
-
-
-
-
-
-
-const menu = () => {
+const menu = () => {                                //prompts questions asking which employee you would like to add
      inquirer.prompt (
         {
             type: "list",
@@ -38,14 +31,14 @@ const menu = () => {
             }
         });
     }
-    const employees = [];
-        const addManager = () => {
-            inquirer.prompt ([
+    const employees = [];                           // array of the selected classes
+        const addManager = () => {                
+            inquirer.prompt ([                      //prompts questions
          {
-            type: "input",
+            type: "input",                                              // moves forward with the appropriate questions for the selected class
             message:"What is the managers name?",
             name: "name",
-            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
+            validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}   // validates, need an answer to continue
         
         },
         {
@@ -71,14 +64,14 @@ const menu = () => {
         },
         ])
     .then (answers => {
-        const manager = new Manager (answers.name, answers.id, answers.email, answers.officeNumber)
+        const manager = new Manager (answers.name, answers.id, answers.email, answers.officeNumber)       // pushes the new information to the array
         employees.push(manager)
         menu()
     })
 };
 
-const addEngineer = () => {
-    inquirer.prompt ([
+const addEngineer = () => {                     
+    inquirer.prompt ([                                  //promps questions
         {
             type: "input",
             message:"What is the Engineer's name?",
@@ -117,12 +110,12 @@ const addEngineer = () => {
         ])
     .then (answers => {
         const engineer = new Engineer (answers.name, answers.id, answers.email, answers.officeNumber)
-        employees.push(engineer)
+        employees.push(engineer)  // pushes the new information to the array
         menu()
     })
 };
 const addIntern = () => {
-    inquirer.prompt ([
+    inquirer.prompt ([     //prompts questions
         {
             type: "input",
             message:"What is the Intern's name?",
@@ -154,15 +147,15 @@ const addIntern = () => {
         ])
     .then (answers => {
         const intern = new Intern (answers.name, answers.id, answers.email, answers.school)
-        employees.push(intern)
+        employees.push(intern)  // pushes the new information to the array
         menu()
     })
 };
 
-        menu()
+        menu()     //executes menu function
 
 
-const writeFileSync = (data) => {
+const writeFileSync = (data) => {                               //creates the new HTMl file and send information to the generate markdown file
     return new Promise ((resolve, reject) => {
     fs.writeFile('./dist/index.html', data, err => {
       if(err) {
