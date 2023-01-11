@@ -1,16 +1,17 @@
+const generateMarkdown = require("./src/generateMarkdown")
+const fs = require ('fs');
+const path = require("path");
 const inquirer = require("inquirer");
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern")
 
-const generateMarkdown = require("./src/generateMarkdown")
-const fs = require ('fs');
-const path = require("path");
 
 
 
 
-const employees = [];
+
+
 
 const menu = () => {
      inquirer.prompt (
@@ -18,7 +19,7 @@ const menu = () => {
             type: "list",
             message: "Select the Employee you would like to add",
             name: "selectEmployee",
-            choices: ["Manager","Engineer", "intern","Completed"],
+            choices: ["Manager","Engineer", "Intern","Completed"],
             validate:(value) =>{if(value){return true} else {return 'I need an answer to continue'}}
         })
         .then((answer) => {
@@ -28,7 +29,7 @@ const menu = () => {
             if (answer.selectEmployee ==="Engineer"){
                 addEngineer();
             }
-            if (answer.selectEmployee ==="intern"){
+            if (answer.selectEmployee ==="Intern"){
                 addIntern();
             }
             if (answer.selectEmployee ==="Completed"){
@@ -37,7 +38,7 @@ const menu = () => {
             }
         });
     }
-
+    const employees = [];
         const addManager = () => {
             inquirer.prompt ([
          {
@@ -152,8 +153,8 @@ const addIntern = () => {
         },
         ])
     .then (answers => {
-        const intern = new Intern (answers.name, answers.id, answers.email, answers.github, answers.officeNumber)
-        employees.push(intern)
+        //const Intern = new Intern (answers.name, answers.id, answers.email, answers.github, answers.officeNumber)
+        employees.push(Intern)
         menu()
     })
 };
@@ -167,7 +168,7 @@ const writeFileSync = (data) => {
       if(err) {
         reject(err);
         return;
-      }
+      }else
       resolve({
         good:true,
         message:'HTML File Created'
