@@ -1,7 +1,7 @@
 const Employee = require ('../lib/Employee');
 
 test ('Employee properties test', () => {
-    const employee = new Employee ('Krister', '4343',   'krister90@gmail.com','Minnetonka');
+    const employee = new Employee ('Krister', '4343',   'krister90@gmail.com');
   
      expect(employee.Name).toBe('Krister');
      expect(employee.Id).toBe('4343');
